@@ -1,0 +1,12 @@
+{
+  "domain": "GrazHA",
+  "name": "GrazHA",
+  "codeowners": [
+    "@Lietziboyy"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/Lietziboyy/Graz-Linien-HA",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/Lietziboyy/Graz-Linien-HA/issues",
+  "version": "0.1.0"
+}
