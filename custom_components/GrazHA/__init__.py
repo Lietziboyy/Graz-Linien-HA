@@ -24,7 +24,11 @@ if TYPE_CHECKING:
 
     from .data import GrazHAConfigEntry
 
-PLATFORMS: list[Platform] = [
+
+from .binary_sensor import GrazHABinarySensor
+PLATFORMS = ["binary_sensor"] #needed to register the platform
+
+PLATFORMS: list[Platform] = [ # weird formatting
     Platform.SENSOR,
     Platform.BINARY_SENSOR,
     Platform.SWITCH,
