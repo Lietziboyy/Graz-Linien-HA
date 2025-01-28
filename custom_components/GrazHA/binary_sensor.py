@@ -1,5 +1,8 @@
 from homeassistant.components.binary_sensor import BinarySensorEntity, BinarySensorEntityDescription
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
+from .data import GrazHAConfigEntry
+from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.core import HomeAssistant
 
 class GrazHABinarySensor(BinarySensorEntity):
     """GrazHA binary_sensor class."""
@@ -56,3 +59,23 @@ class GrazHABinarySensor(BinarySensorEntity):
         self.coordinator.data["title"] = ""  # Reset title
         self.async_schedule_update_ha_state(False)
 
+ENTITY_DESCRIPTIONS = (
+    BinarySensorEntityDescription(
+        key="GrazHA",
+        name="GrazHA Binary Sensor",
+        icon="mdi:format-quote-close",
+    ),
+)
+async def async_setup_entry(
+    hass: HomeAssistant,  # noqa: ARG001 Unused function argument: [hass](cci:1://file:///home/michi/Documents/code/Graz-Linien-HA/custom_components/GrazHA/binary_sensor.py:52:4-56:50)
+    entry: GrazHAConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
+    """Set up the binary sensor platform."""
+    async_add_entities(
+        GrazHABinarySensor(
+            coordinator=entry.runtime_data.coordinator,
+            entity_description=entity_description,
+        )
+        for entity_description in ENTITY_DESCRIPTIONS
+    )
