@@ -1,4 +1,6 @@
-class GrazHABinarySensor(GrazHAEntity, BinarySensorEntity):
+from homeassistant.components.binary_sensor import BinarySensorEntity
+
+class GrazHABinarySensor(BinarySensorEntity):
     """GrazHA binary_sensor class."""
 
     def __init__(
