@@ -8,12 +8,13 @@ class GrazHABinarySensor(BinarySensorEntity):
     """GrazHA binary_sensor class."""
 
     def __init__(
-        self,
-        coordinator: DataUpdateCoordinator,
-        entity_description: BinarySensorEntityDescription,
+    self,
+    coordinator: DataUpdateCoordinator,
+    entity_description: BinarySensorEntityDescription,
     ) -> None:
         """Initialize the binary_sensor class."""
-        super().__init__(coordinator)
+        super().__init__()  # Call the __init__ method of BinarySensorEntity without arguments
+        self.coordinator = coordinator  # Set the coordinator attribute separately
         self.entity_description = entity_description
 
     @property
