@@ -1,18 +1,12 @@
-from homeassistant.components.binary_sensor import (
-    BinarySensorEntity,
-    BinarySensorEntityDescription,
-)
-from homeassistant.helpers.update_coordinator import (
-    DataUpdateCoordinator,
-    BlueprintDataUpdateCoordinator,
-)
+from homeassistant.components.binary_sensor import BinarySensorEntity, BinarySensorEntityDescription
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 class GrazHABinarySensor(BinarySensorEntity):
     """GrazHA binary_sensor class."""
 
     def __init__(
         self,
-        coordinator: BlueprintDataUpdateCoordinator,
+        coordinator: DataUpdateCoordinator,
         entity_description: BinarySensorEntityDescription,
     ) -> None:
         """Initialize the binary_sensor class."""
@@ -54,3 +48,11 @@ class GrazHABinarySensor(BinarySensorEntity):
         """Clean up when removing from hass."""
         await super().async_will_remove_from_hass()
         self.coordinator.data["title"] = ""  # Reset title
+        self.async_schedule_update_ha_state(False)
+
+    async def async_added_to_hass(self):
+        """Call when entity is added to hass."""
+        await super().async_added_to_hass()
+        self.coordinator.data["title"] = ""  # Reset title
+        self.async_schedule_update_ha_state(False)
+
