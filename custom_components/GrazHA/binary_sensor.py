@@ -1,4 +1,11 @@
-from homeassistant.components.binary_sensor import BinarySensorEntity
+from homeassistant.components.binary_sensor import (
+    BinarySensorEntity,
+    BinarySensorEntityDescription,
+)
+from homeassistant.helpers.update_coordinator import (
+    DataUpdateCoordinator,
+    BlueprintDataUpdateCoordinator,
+)
 
 class GrazHABinarySensor(BinarySensorEntity):
     """GrazHA binary_sensor class."""
